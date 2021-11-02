@@ -13,14 +13,17 @@ Gaia is loosing power to keep the world safe due to the loss of The Time Code. O
 - To have a splash screen
 - To have a start button
 - To have a Game over (1 for winning, 1 for loosing)
-- To define a map with elements that cant be destroyed, items you can't pass through.
-
+- To be able to die & kill.
+- All in one "image".
 
 ## Backlog/nice to have
 
+- From melee to distance attack.
 - 2 different classes plus a third one based on the enemy class (that will be the boss class.)
 - At least 2 different weapons with their respective effects.
 - To define random movements for the enemies.
+- To define a map with elements that cant be destroyed, items you can't pass through.
+- A tank. A tank is always good.
 
 ## Data structure
 
