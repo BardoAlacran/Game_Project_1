@@ -6,7 +6,7 @@ class Soldier {
     }
     //Methods 
     _attack()
-    _reload() 
+    _reload()
     _move()
 }
 class Hero extends Soldier {
