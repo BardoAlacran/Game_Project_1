@@ -1,5 +1,5 @@
 class Soldier {
-    constructor (posX= 0, posY = 0, direction ="N", hp, weapon, ammo){
+    constructor (posX= 0, posY = 0, direction ="up", hp, weapon, ammo){
     this.posX = posX;
     this.posY = posY;
     this.direction = direction;
@@ -7,69 +7,107 @@ class Soldier {
     this.weapon = weapon;
     this.ammo = ammo;
     }
-    attack()
-    reload()
-    Forward(){
+    /*attack()
+    reload()*/
+
+    _Forward(){
         switch (this.direction) {
-            case "N":
+            case "up":
                 this.posY--;
                 break;
-            case "E":
+            case "left":
                 this.posX++;
                 break;
-            case "S":
+            case "right":
                 this.posY++;
                 break;
-            case "W":
+            case "down":
                 this.posY--;
                 break;
         }   
     }
-    Left() {
+    Up(){
         switch (this.direction) {
-          case "N":
-            this.direction = "W";
-            break;
-          case "E":
-            this.direction = "N";
-            break;
-          case "S":
-            this.direction = "E";
-            break;
-          case "W":
-            this.direction = "S";
-            break;
-          default:
-            break;
+            case "up":
+                this.direction = "up"
+                break;
+            case "left":
+                this.direction = "up"
+                break;
+            case "right":
+                this.direction = "up"
+                break;
+            case "down":
+                this.direction = "up"
+                break;
+                default:
+                break;
         }
     }
-    Right() {
+    Left(){
         switch (this.direction) {
-          case "N":
-            this.direction = "E";
-            break;
-          case "E":
-            this.direction = "S";
-            break;
-          case "S":
-            this.direction = "W";
-            break;
-          case "W":
-            this.direction = "N";
-            break;
-          default:
-            break;
+            case "up":
+                this.direction = "left"
+                break;
+            case "left":
+                this.direction = "left"
+                break;
+            case "right":
+                this.direction = "left"
+                break;
+            case "down":
+                this.direction = "left"
+                break;
+                default:
+                break;
+        }
+    }
+    Right(){
+        switch (this.direction) {
+            case "up":
+                this.direction = "right"
+                break;
+            case "left":
+                this.direction = "right"
+                break;
+            case "right":
+                this.direction = "right"
+                break;
+            case "down":
+                this.direction = "right"
+                break;
+                default:
+                break;
+        }
+    }
+    Down(){
+        switch (this.direction) {
+            case "up":
+                this.direction = "down"
+                break;
+            case "left":
+                this.direction = "down"
+                break;
+            case "right":
+                this.direction = "down"
+                break;
+            case "down":
+                this.direction = "down"
+                break;
+                default:
+                break;
         }
     }
 }
-class Hero extends Soldier {
+const stan = new Soldier (50, 50, "N", 50,`Shootgun`, 10);
+/*class Hero extends Soldier {
     constructor (posX= 50, posY = 50, direction ="N", hp, weapon, ammo, level){
         super(posX, posY, direction, hp, weapon, ammo);
         this.level = level;
     }
     changeWeapon()
-}
-/*class Enemy extends Soldier {
+};
+class Enemy extends Soldier {
     constructor (hp, direction, weapon){
         super(hp,direction, weapon);
     }
