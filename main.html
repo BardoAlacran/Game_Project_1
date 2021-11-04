@@ -11,14 +11,16 @@
     <h1>The Gaia's Army: The code of time.</h1>
     <div id="splash" class="splash">
         <div>
-            <button id="play">Enter the Journey</button>
+            <button id="play">play</button>
         </div>
     </div>
-    <div id="game" class="game">
-        <canvas id="canvas" width="300" height="300"></canvas>
+    <div id="game" class="game hidden">
+        <canvas id="canvas" width="500" height="500"></canvas>
         <button id="start">START</button>
     </div>
-    <div id="gameover"></div>
+    <div id="gameover" class="hidden">
+        <button id="gameoverButton">Game Over</button>
+    </div>
     
     <script src="/js/characters.js"></script>
     <script src="/js/game.js"></script>

@@ -1,7 +1,7 @@
 class Game {
     constructor(sets){
         this.ctx = sets.ctx;
-        this.hero = sets.hero;
+        this.soldier = sets.soldier;
     }
     _drawHero(){
         this.ctx.fillStyle = 'blue';
@@ -9,7 +9,7 @@ class Game {
     }
     _drawEnemyes(){
         this.ctx.fillStyle = 'red';
-        this.ctx.fillRect(, , 10, 10)
+        this.ctx.fillRect(20, 20, 10, 10)
         //los enemigos estarán posicionados en sitios concretos para que no coincidan con los elementos de mapa.
     }
     _drawElements(){
@@ -21,27 +21,27 @@ class Game {
         document.addEventListener('keydown', (event) =>{
             switch (event.code) {
                 case "ArrowUp":
-                    this.hero.Up
+                    this.soldier.Up();
                     break;
                 case "ArrowDown":
-                    this.hero.Down
+                    this.soldier.Down();
                     break;
                             
                 case "ArrowLeft":
-                    this.hero.Left
+                    this.soldier.Left();
                     break;
                                     
                 case "ArrowRight":
-                    this.hero.Right
+                    this.soldier.Right();
                     break;
                     default:
                     break;
             }
-        })
+        });
         
     }
     start(){
         this._controls();
-        
+        this._drawHero();
     }
 }
