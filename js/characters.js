@@ -16,13 +16,13 @@ class Soldier {
                 this.posY--;
                 break;
             case "left":
-                this.posX++;
+                this.posX--;
                 break;
             case "right":
-                this.posY++;
+                this.posX++;
                 break;
             case "down":
-                this.posY--;
+                this.posY++;
                 break;
         }   
     }
@@ -99,8 +99,8 @@ class Soldier {
         }
     }
 }
-const stan = new Soldier (50, 50, "N", 50,`Shootgun`, 10);
-/*class Hero extends Soldier {
+const stan = new Soldier (50, 50, "up", 50,`Shootgun`, 10);
+/*class Hero extends Soldier {  
     constructor (posX= 50, posY = 50, direction ="N", hp, weapon, ammo, level){
         super(posX, posY, direction, hp, weapon, ammo);
         this.level = level;
