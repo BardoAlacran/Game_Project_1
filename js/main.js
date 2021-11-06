@@ -10,11 +10,23 @@ function splashScreen () {
 
         const startButton = document.querySelector('#start');
         startButton.addEventListener('click', ()=>{
+
+            const canvas = document.querySelector('#canvas');
+            const ctx = canvas.getContext('2d');
+            const gaiaGame = new Game(
+                {
+                    ctx: ctx,
+                    rows: canvas.width / 10,
+                    columns: canvas.height / 10,
+                    map: map,
+                    player: Player,
+                },
+            );   
+            
+            
             const gameover = document.querySelector('#gameover');
             gameover.classList.remove('hidden');
-            game.classList.add('hidden');
         });
-
     
         const gameoverButton = document.querySelector('#gameoverButton');
         gameoverButton.addEventListener('click', ()=>{

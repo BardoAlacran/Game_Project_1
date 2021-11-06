@@ -1,22 +1,43 @@
 class Game {
-    constructor(sets){
-        this.ctx = sets.ctx;
-        this.soldier = sets.soldier;
+    constructor(options, callback){
+        this.ctx = options.ctx;
+        this.player = Player;
+        this.rows = options.rows;
+        this.columns = options.columns;
+        this.map = map;
+        this.callback = callback;
     }
-    _drawHero(){
-        this.ctx.fillStyle = 'blue';
-        this.ctx.fillRect(150, 150, 10, 10);
+    _clean(){
+        this.ctx.clearRect(0, 0, 500, 500);
     }
-    _drawEnemyes(){
-        this.ctx.fillStyle = 'red';
-        this.ctx.fillRect(20, 20, 10, 10)
-        //los enemigos estarán posicionados en sitios concretos para que no coincidan con los elementos de mapa.
+
+    _drawPlayer(){
+        this.ctx.fillStyle = 'pink';
+        this.ctx.fillRect(this.player.posY, this.player.posX, 50, 50);
     }
-    _drawElements(){
-        this.ctx.fillStyle = 'brown';
-        
-        //quiero hacer elementos que sean cuadrados, así juntar algunos para hacer paredes, o hacer otras cosas. Los elementos no estarán posicionados aleatoriamente.
+
+    _drawWorld() {
+        this.map.forEach(arrayRows => {
+            arrayRows.forEach(arrayColumns => {
+                switch (arrayColumns) {
+                    case "r":
+                        this.ctx.fillStyle = 'brown';
+                        this.ctx.fillRect(arrayRows * 50, arrayColumns * 50, 50, 50);
+                        break;
+                    case "f":
+                        this.ctx.fillStyle = 'grey';
+                        this.ctx.fillRect(arrayRows * 50, arrayColumns * 50, 50, 50);
+                        break;
+                    case "d":
+                        this.ctx.fillStyle = 'green';
+                        this.ctx.fillRect(arrayRows * 50, arrayColumns * 50, 50, 50);
+                    default:
+                        break;
+                }                
+            });
+        });
     }
+
     _controls(){
         document.addEventListener('keydown', (event) =>{
             switch (event.code) {
@@ -38,10 +59,19 @@ class Game {
                     break;
             }
         });
-        
     }
-    start(){
-        this._controls();
-        this._drawHero();
+    _update(){
+        this._clean();
+        this._drawPlayer();
+        this._drawWorld();
+        //añadir todas las functiones de Game.
+
+
+        window.requestAnimationFrame(this._update.bind(this));
+    };
+
+    start() {
+        this._controls()
+        window.requestAnimationFrame(this._update.bind(this));
     }
-}
+};
