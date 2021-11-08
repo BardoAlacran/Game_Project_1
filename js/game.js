@@ -16,26 +16,27 @@ class Game {
 
     _drawPlayer(){
         this.ctx.fillStyle = 'pink';
-        console.log(this.player);
+        
         this.ctx.fillRect(this.player.posY, this.player.posX, 50, 50);
     }
 
     _drawWorld() {
-        console.log('world') 
-        this.map.forEach(arrayRows => {
-            arrayRows.forEach(arrayColumns => {
-                switch (arrayColumns) {
-                    /*case "r":
+
+        this.map.forEach((y,indexY) => {
+            y.forEach((x, indexX )=> {
+                switch (x) {
+                    case "r":
                         this.ctx.fillStyle = 'brown';
-                        this.ctx.fillRect(this.map.arrayRows * 50, this.map.arrayColumns * 50, 50, 50);
+                        this.ctx.fillRect(indexY*50,indexX*50, 50, 50);
                         break;
                     case "f":
                         this.ctx.fillStyle = 'grey'
-                        this.ctx.fillRect(this.rows * 50, this.columns * 50, 50, 50);
-                        break;*/
+                        this.ctx.fillRect(indexY*50,indexX*50, 50, 50);
+                        break;
                     case "d":
                         this.ctx.fillStyle = 'green';
-                        this.ctx.fillRect( * 50,  * 50, 50, 50);
+                        
+                        this.ctx.fillRect(indexY*50,indexX*50, 50, 50);
                     default:
                         break;
                 }                
@@ -47,18 +48,22 @@ class Game {
         document.addEventListener('keydown', (event) =>{
             switch (event.code) {
                 case "ArrowUp":
-                    this.soldier.Up();
+                    this.player.up();
+                    console.log('up?')
                     break;
                 case "ArrowDown":
-                    this.soldier.Down();
+                    this.player.down();
+                    console.log('down?')
                     break;
                             
                 case "ArrowLeft":
-                    this.soldier.Left();
+                    this.player.left();
+                    console.log('left?')
                     break;
                                     
                 case "ArrowRight":
-                    this.soldier.Right();
+                    this.player.right();
+                    console.log('right?')
                     break;
                     default:
                     break;
