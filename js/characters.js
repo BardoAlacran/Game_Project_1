@@ -8,26 +8,21 @@ class Player {
     attack(){
         console.log(`attack initiated`);
     };
-    /*move(){
-        switch (direction) {
-            case 'up':
-                this.posY -50
-        }
-    }*/
+    
     up(){
         console.log('up pressed');
-        this.posY-=50;  
+        this.posX-=50;  
     }
     left(){
         console.log('up pressed');
-        this.posX-=50;
+        this.posY-=50;
     }
     right(){
         console.log('up pressed');
-        this.posX+=50;
+        this.posY+=50;
     }
     down(){
         console.log('up pressed');
-        this.posY+=50;
+        this.posX+=50;
     }
 };
