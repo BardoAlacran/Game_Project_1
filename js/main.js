@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     ctx: ctx,
                     rows: canvas.width / 10,
-                    columns: canvas.height / 11,
+                    columns: canvas.height / 10,
                     map: map,
-                    player: new Player(5, canvas.width / 10, canvas.height / 11, 50, 50),
+                    player: new Player(5, 1, 1, 50, 50),
                 },
             );
             gaiaGame.start()

@@ -1,5 +1,5 @@
 class Player {
-    constructor (hp, posY = 50, posX = 50, direction = 'up') {
+    constructor (hp, posX, posY, direction = 'up') {
         this.hp = hp;
         this.posY = posY;
         this.posX = posX;
@@ -10,19 +10,19 @@ class Player {
     };
     
     up(){
-        console.log('up pressed');
-        this.posX-=50;  
+        
+        this.posY-=1;  
     }
     left(){
-        console.log('up pressed');
-        this.posY-=50;
+        
+        this.posX-=1;
     }
     right(){
-        console.log('up pressed');
-        this.posY+=50;
+        
+        this.posX+=1;
     }
     down(){
-        console.log('up pressed');
-        this.posX+=50;
+        
+        this.posY+=1;
     }
 };
