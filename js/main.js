@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     rows: canvas.width / 10,
                     columns: canvas.height / 10,
                     map: map,
-                    player: new Player(5, 1, 1, 50, 50),
+                    //enemy: [],
+                    player: new Player(5, 4, 9, 50, 50),
                 },
             );
             gaiaGame.start()
