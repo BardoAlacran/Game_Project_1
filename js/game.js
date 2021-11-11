@@ -74,7 +74,7 @@ class Game {
                     }
                     break;
                 case "ArrowDown":
-                    if (this._checkCollisionWithEnemy(this.player.posY+1, this.player.posX-1) === false && this._canIMoveToNextPosition(this.player.posY+1, this.player.posX)){
+                    if (this._checkCollisionWithEnemy(this.player.posY+1, this.player.posX) === false && this._canIMoveToNextPosition(this.player.posY+1, this.player.posX)){
                         this.player.down();
                     }
                     break;
