@@ -20,24 +20,21 @@ class Game {
         
         this.ctx.fillRect(this.player.posX*50, this.player.posY*50, 50, 50);
     }
+    _generateEnemy(){
+        this.enemy.push(new Enemy(5, 1, 8, 'down')),
+        this.enemy.push(new Enemy(5, 8, 8, 'down')),
+        this.enemy.push(new Enemy(5, 1, 3, 'down')),
+        this.enemy.push(new Enemy(5, 8, 3, 'down')),
+        this.enemy.push(new Enemy(5, 5, 1, 'down')),
+        this.enemy.push(new Enemy(5, 1, 5, 'down'))
+    }
     _drawEnemy(){
         this.enemy.forEach((enemyPos) => {
             this.ctx.fillStyle = 'blue';
             this.ctx.fillRect(enemyPos.posX*50, enemyPos.posY*50, 50, 50);
             
         });
-        //this.ctx.fillStyle = 'blue';
-        //this.ctx.fillRect(this.enemy.posX*50, this.enemy.posY*50, 50, 50);
     }
-    _generateEnemy(){
-        this.enemy.push(new Enemy(5, 1, 8, 'down'));
-        this.enemy.push(new Enemy(5, 8, 8, 'down'));
-        this.enemy.push(new Enemy(5, 1, 3, 'down'));
-        this.enemy.push(new Enemy(5, 8, 3, 'down'));
-        this.enemy.push(new Enemy(5, 5, 1, 'down'));
-        this.enemy.push(new Enemy(5, 1, 5, 'down'));
-    }
-
     _drawWorld() {
         this.map.forEach((y,indexY) => {
             y.forEach((x, indexX )=> {
@@ -63,36 +60,46 @@ class Game {
     _canIMoveToNextPosition(nextPositionY, nextPositionX){
         return this.map[nextPositionY][nextPositionX] !== 'r';
     }
-    //una función para que si está en Y0 no pueda ir más arriba, Y50 no pueda más abajo, etc.
+    _checkCollisionWithEnemy(nextPositionY, nextPositionX){
+        return this.enemy.some(function(enemy){
+            return enemy.posY === nextPositionY && enemy.posX === nextPositionX;
+        })        
+    }
     _controls(){
         document.addEventListener('keydown', (event) =>{
             switch (event.code) {
                 case "ArrowUp":
-                    console.log("posy", this.player.posX, "posx", this.player.posY);
-                    console.log(this.map[this.player.posX][this.player.posY-1], this._canIMoveToNextPosition(this.player.posX, this.player.posY-1))
-                    if(this._canIMoveToNextPosition(this.player.posY-1, this.player.posX)){
+                    if (this._checkCollisionWithEnemy(this.player.posY-1, this.player.posX) === false && this._canIMoveToNextPosition(this.player.posY-1, this.player.posX)){
                         this.player.up();
                     }
                     break;
                 case "ArrowDown":
-                    if (this._canIMoveToNextPosition(this.player.posY+1, this.player.posX)){
-                    this.player.down();
+                    if (this._checkCollisionWithEnemy(this.player.posY+1, this.player.posX-1) === false && this._canIMoveToNextPosition(this.player.posY+1, this.player.posX)){
+                        this.player.down();
                     }
                     break;
                             
                 case "ArrowLeft":
-                    if (this._canIMoveToNextPosition(this.player.posY, this.player.posX-1)){
+                    if (this._checkCollisionWithEnemy(this.player.posY, this.player.posX-1) === false && this._canIMoveToNextPosition(this.player.posY, this.player.posX-1)){
                         this.player.left();
                     }
                     break;
                                     
                 case "ArrowRight":
-                    if (this._canIMoveToNextPosition(this.player.posY, this.player.posX+1)){
+                    if (this._checkCollisionWithEnemy(this.player.posY, this.player.posX+1) === false && this._canIMoveToNextPosition(this.player.posY, this.player.posX+1)){
                         this.player.right();
                     }
                     break;
-                case "Space":
-                    this.player.attack();
+                case "KeyA":
+                    /*if (this._enemyPosition(ePosY) === this.player.posY && this._enemyPosition(ePosX) === this.player.posX-1){
+                        console.log('i found you')
+                    }*/
+                    /*if (this._enemyInNextPosition(this.player.posY, this.player.posX-1)){
+                        console.log(this._enemyInNextPosition())
+                    }*/
+                     //cuando le doy vuelve a su pposición inicial. (el problema era el keydown Space, al pasarlo a A no ocurre.)
+                   // this.player.attack();
+                    break;
                     default:
                     break;
             }

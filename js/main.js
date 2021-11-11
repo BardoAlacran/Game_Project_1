@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     columns: canvas.height / 10,
                     map: map,
                     //enemy: [],
-                    player: new Player(5, 4, 9, 50, 50),
+                    player: new Player(5, 4, 9, 50, 50, 5),
                 },
             );
             gaiaGame.start()
@@ -46,5 +46,3 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 //ahora a la segunda vez que sale start, no aparece game over button. He de intentar que sí aparezca y la función sea un bucle.
-
-/*[['G','R','G'],['G','G','G'],['G','G','G']]*/

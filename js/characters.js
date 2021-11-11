@@ -1,13 +1,17 @@
 class Player {
-    constructor (hp, posX, posY, direction = 'up') {
+    constructor (hp, posX, posY, direction = 'up', damage) {
         this.hp = hp;
         this.posY = posY;
         this.posX = posX;
         this.direction = direction;
+        this.damage = damage;
     }
     attack(){
-        console.log(`attack initiated`);
-    };  
+        return this.damage;
+    };
+    receiveDamage(damage){
+        this.hp-= damage;
+    }
     
     up(){
         this.direction = 'up'
