@@ -6,6 +6,7 @@ class Game {
         this.columns = options.columns;
         this.map = options.map;
         this.enemy = [];
+        this.gameover = false;
         this.callback = callback;
     }
     _clean(){
@@ -97,10 +98,12 @@ class Game {
                     }
                     break;
                 case "KeyA":
-                    if (this._identifyEnemy(this.player.posY, this.player.posX-1)) {
-                        
-                        console.log(this._identifyEnemy(this.player.posY, this.player.posX-1));
-                    }    
+
+                    if (this._identifyEnemy(this.player.posY-1, this.player.posX) || this._identifyEnemy(this.player.posY+1, this.player.posX) || this._identifyEnemy(this.player.posY, this.player.posX-1) || this._identifyEnemy(this.player.posY, this.player.posX+1)) {
+                        let identified = this._identifyEnemy(this.player.posY, this.player.posX-1)
+                        this.enemy.splice(identified, 1);
+                        console.log('a la mierda');
+                    } 
                 
                      //cuando le doy vuelve a su pposición inicial. (el problema era el keydown Space, al pasarlo a A no ocurre.)
                    // this.player.attack();
@@ -110,12 +113,18 @@ class Game {
             }
         });
     }
+    gameOver(){
+        if (this.enemy.length === 0) {
+            this.gameover = true;
+        }
+    }
     _update(){
         this._clean()
         this._drawWorld()
-        this._generateEnemy()
+        
         this._drawEnemy()
         this._drawPlayer()
+        this.gameOver()
         //añadir todas las functiones de Game.
         //añadir una función game over como método de Game, que ejecute un condicional y se vincula a una propiedad de Main.
         
@@ -124,6 +133,8 @@ class Game {
 
     start() {
         this._controls()
+        this._generateEnemy()
+        
         window.requestAnimationFrame(this._update.bind(this));
         
     }

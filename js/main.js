@@ -25,9 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
             );
             gaiaGame.start()
-    
-            const gameover = document.querySelector('#gameover');
+            if (Game.gameover === true) {
+                const gameover = document.querySelector('#gameover');
             gameover.classList.remove('hidden');
+            }
+            
         });
     
         const gameoverButton = document.querySelector('#gameoverButton');
