@@ -15,7 +15,6 @@ class Game {
         this.ctx.fillRect(0, 0, 500, 500);
 
     }
-
     _drawPlayer(){
         this.ctx.fillStyle = 'pink';
         
@@ -84,58 +83,40 @@ class Game {
                     if (this._checkCollisionWithEnemy(this.player.posY+1, this.player.posX) === false && this._canIMoveToNextPosition(this.player.posY+1, this.player.posX)){
                         this.player.down();
                     }
-                    break;
-                            
+                    break;                          
                 case "ArrowLeft":
                     if (this._checkCollisionWithEnemy(this.player.posY, this.player.posX-1) === false && this._canIMoveToNextPosition(this.player.posY, this.player.posX-1)){
                         this.player.left();
                     }
-                    break;
-                                    
+                    break;                                  
                 case "ArrowRight":
                     if (this._checkCollisionWithEnemy(this.player.posY, this.player.posX+1) === false && this._canIMoveToNextPosition(this.player.posY, this.player.posX+1)){
                         this.player.right();
                     }
                     break;
                 case "KeyA":
-
                     if (this._identifyEnemy(this.player.posY-1, this.player.posX) || this._identifyEnemy(this.player.posY+1, this.player.posX) || this._identifyEnemy(this.player.posY, this.player.posX-1) || this._identifyEnemy(this.player.posY, this.player.posX+1)) {
                         let identified = this._identifyEnemy(this.player.posY, this.player.posX-1)
                         this.enemy.splice(identified, 1);
-                        console.log('a la mierda');
-                    } 
-                
-                     //cuando le doy vuelve a su pposición inicial. (el problema era el keydown Space, al pasarlo a A no ocurre.)
-                   // this.player.attack();
+                    };
                     break;
                     default:
                     break;
             }
         });
     }
-    gameOver(){
-        if (this.enemy.length === 0) {
-            this.gameover = true;
-        }
-    }
     _update(){
         this._clean()
-        this._drawWorld()
-        
+        this._drawWorld()        
         this._drawEnemy()
         this._drawPlayer()
-        this.gameOver()
-        //añadir todas las functiones de Game.
-        //añadir una función game over como método de Game, que ejecute un condicional y se vincula a una propiedad de Main.
         
         window.requestAnimationFrame(this._update.bind(this));
     };
-
     start() {
         this._controls()
         this._generateEnemy()
         
         window.requestAnimationFrame(this._update.bind(this));
-        
     }
 };

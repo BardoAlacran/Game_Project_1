@@ -1,5 +1,9 @@
 body {
-    background-color: lightseagreen;
+    background-image: url('../images/wallpaperbetter.jpg');
+    background-repeat: repeat; width: auto; height: auto;
+}
+h1 {
+    font-size: 5rem;
 }
 .hidden {
     display: none;
@@ -11,6 +15,9 @@ body {
 
 }
 .splash {
-    background-image: url("../images/space-woman.jpg");
-    
+    padding-top: 5%;
+}
+.game {
+    display: flex;
+    flex-direction: column;
 }

@@ -7,13 +7,11 @@ class Player {
         this.damage = damage;
     }
     attack(){
-        console.log('player method activated')
         return this.damage;
     };
     receiveDamage(damage){
         this.hp-= damage;
     }
-    
     up(){
         this.direction = 'up'
         this.posY-=1;  
