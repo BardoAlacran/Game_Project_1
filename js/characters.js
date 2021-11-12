@@ -7,6 +7,7 @@ class Player {
         this.damage = damage;
     }
     attack(){
+        console.log('player method activated')
         return this.damage;
     };
     receiveDamage(damage){

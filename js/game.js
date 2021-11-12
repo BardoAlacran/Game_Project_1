@@ -21,11 +21,11 @@ class Game {
         this.ctx.fillRect(this.player.posX*50, this.player.posY*50, 50, 50);
     }
     _generateEnemy(){
+        this.enemy.push(new Enemy(5, 5, 1, 'down')),
         this.enemy.push(new Enemy(5, 1, 8, 'down')),
         this.enemy.push(new Enemy(5, 8, 8, 'down')),
         this.enemy.push(new Enemy(5, 1, 3, 'down')),
         this.enemy.push(new Enemy(5, 8, 3, 'down')),
-        this.enemy.push(new Enemy(5, 5, 1, 'down')),
         this.enemy.push(new Enemy(5, 1, 5, 'down'))
     }
     _drawEnemy(){
@@ -65,6 +65,12 @@ class Game {
             return enemy.posY === nextPositionY && enemy.posX === nextPositionX;
         })        
     }
+    _identifyEnemy(nextPositionY, nextPositionX){
+        return this.enemy.findIndex((enemy) => {
+            return enemy.posY === nextPositionY && enemy.posX === nextPositionX
+        }) 
+    }
+
     _controls(){
         document.addEventListener('keydown', (event) =>{
             switch (event.code) {
@@ -91,12 +97,11 @@ class Game {
                     }
                     break;
                 case "KeyA":
-                    /*if (this._enemyPosition(ePosY) === this.player.posY && this._enemyPosition(ePosX) === this.player.posX-1){
-                        console.log('i found you')
-                    }*/
-                    /*if (this._enemyInNextPosition(this.player.posY, this.player.posX-1)){
-                        console.log(this._enemyInNextPosition())
-                    }*/
+                    if (this._identifyEnemy(this.player.posY, this.player.posX-1)) {
+                        
+                        console.log(this._identifyEnemy(this.player.posY, this.player.posX-1));
+                    }    
+                
                      //cuando le doy vuelve a su pposición inicial. (el problema era el keydown Space, al pasarlo a A no ocurre.)
                    // this.player.attack();
                     break;
@@ -112,7 +117,7 @@ class Game {
         this._drawEnemy()
         this._drawPlayer()
         //añadir todas las functiones de Game.
-
+        //añadir una función game over como método de Game, que ejecute un condicional y se vincula a una propiedad de Main.
         
         window.requestAnimationFrame(this._update.bind(this));
     };
